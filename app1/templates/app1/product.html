@@ -1,0 +1,33 @@
+{% extends 'app1/base.html' %}
+<!-- heading start here  -->
+{% block headings %}
+
+<style>
+    img{
+        width: 60%;
+        height: 70vh;
+        margin: 1rem 20%;
+        object-fit: contain;
+    }
+    h2{
+        text-align: center;
+        color: white;
+    }
+    p{
+        color: white;
+        padding: 1rem;
+        overflow: -moz-hidden-unscrollable;
+    }
+</style>
+{% endblock headings %}
+<!-- start here -->
+{% block contents %}
+<img src="{{ project.image.url }}" alt="">
+<h2>{{ project.title }}</h2>
+<h2>{{ project.date }}</h2>
+<h2>{{ project.start }}</h2>
+<h2>{{ project.end }}</h2>
+<h2>{{ project.lang }}</h2>
+<h2>{{ project.Platform }}</h2>
+<p>{{ project.des }}</p>
+{% endblock contents %}

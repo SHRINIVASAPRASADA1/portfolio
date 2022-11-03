@@ -1,0 +1,50 @@
+{% extends 'app1/base.html' %}
+<!-- heading start here  -->
+{% block headings %}
+<style>
+  .centerunlimited {
+    width: 70%;
+    /* background-color: blue; */
+    margin: 0.2rem 15%;
+  }
+  #mytitle {
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+  }
+  #myimg {
+    width: 70%;
+    max-width: 70%;
+    min-width: 70%;
+    min-height: 50vh;
+    max-height: 50vh;
+    object-fit: contain;
+  }
+  #mydes {
+    /* text-align: center; */
+    color: white;
+  }
+  #mydate {
+    color: white;
+  }
+</style>
+
+{% endblock headings %}
+<!-- start here -->
+{% block contents %}
+<div class="centerunlimited">
+  <p id="mydate">
+    {{ product.date }} source :
+    <a href="{{ product.source_link }}"> {{ product.source }}</a>
+  </p>
+  <h3 id="mytitle">{{ product.title }}</h3>
+  <img id="myimg" src="{{ product.img.url }}" alt="" />
+  <p id="mydes">{{ product.des }}</p>
+  {% for i in extra %} 
+  {% if product.title == i.blog_number|slugify %}
+  <img id="myimg" src="{{ i.img.url }}" alt="" />
+  <p id="mydes">{{ i.des }}</p>
+  {% endif %} 
+  {% endfor %}
+</div>
+{% endblock contents %}

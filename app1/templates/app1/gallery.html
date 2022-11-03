@@ -1,0 +1,42 @@
+{% extends 'app1/base.html' %}
+<!-- heading start here  -->
+{% block headings %}
+
+<style>
+  .fb {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+
+  .mycard{
+    width: 14rem;
+    height: 14rem;
+    margin: 1rem;
+  }
+
+  .mycard img{
+    object-fit: cover;
+    width: 13rem;
+    height: 13rem;
+  }
+  .mycard p{
+    color: white;
+  }
+</style>
+
+{% endblock headings %}
+<!-- start here -->
+{% block contents %}
+
+<div class="fb">
+  {% for i in images %}
+
+  <div class="mycard">
+    <img src="{{ i.img.url }}" alt="" />
+    <p>{{ i.date }}</p>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock contents %}

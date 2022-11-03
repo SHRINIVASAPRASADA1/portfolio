@@ -1,0 +1,84 @@
+{% extends 'app1/base.html' %}
+<!-- heading start here  -->
+{% block headings %}
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+{% endblock headings %}
+<!-- start here -->
+{% block contents %}
+
+<h1 id="maintitle">Code studio</h1>
+<h1 id="maintitle">for the Computer world</h1>
+
+<lottie-player
+  id="anime"
+  src="https://assets10.lottiefiles.com/packages/lf20_tQGiRrPHPP.json"
+  mode="bounce"
+  background="transparent"
+  speed="0.8"
+  style="width: 100%"
+  loop
+  autoplay
+></lottie-player>
+<!-- about  -->
+<div class="partition">
+  <div class="part1">
+    <lottie-player
+      id="anime"
+      src="https://assets6.lottiefiles.com/packages/lf20_fifomona.json"
+      background="transparent"
+      speed="1"
+      style="width: 60%"
+      loop
+      autoplay
+    ></lottie-player>
+  </div>
+  <div class="part2">
+    <h1 id="titleabout">About</h1>
+    <h1 id="aboutme">
+      My name is SHRINIVASAPRASADA , I'am a Student Devloper , I complited my
+      BCA Degree , I help Other's To Fulfil Their business to idea with my coing
+      skill and technology
+    </h1>
+  </div>
+</div>
+<!-- end of about  -->
+<!-- start of skill  -->
+<div class="partition">
+  <div class="part1">
+    <h1 id="titleabout">Skills</h1>
+    <h1 id="aboutme">
+      language used : Python , Dart , Javascript ; Framework : Django , Flask ,
+      Flutter , React , Express ; DataBase : Mysql , Mongo , Oracle , Postgress
+      , firebase ; Others : Css , Html , Json , Machine Learning , Linux , Bash
+      ;
+    </h1>
+  </div>
+  <div class="part2">
+    <lottie-player
+      id="anime"
+      src="https://assets7.lottiefiles.com/private_files/lf30_VBnEpi.json"
+      background="transparent"
+      speed="1"
+      style="width: 60%"
+      loop
+      autoplay
+    ></lottie-player>
+  </div>
+</div>
+
+<h1 id="titles">Projects Compleated</h1>
+<div class="flexcoxs">
+  {% for item in project %}
+  <form action="{% url 'product_view' name=item.id title=item.title %}" method="post">
+    {% csrf_token %}
+    <button class="card">
+      <input type="hidden" name="projectid" value="{{ item.id }}">
+      <img id="logoss" src="{{ item.image.url }}" alt="" />
+      <h2 id="titlehead">{{ item.title }}</h2>
+    </button>
+  </form>
+  {% endfor %}
+</div>
+<!-- <h1 id="titles">Happy Clients</h1>d -->
+
+{% endblock contents %}
