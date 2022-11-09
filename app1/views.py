@@ -20,7 +20,6 @@ def product_view(request, name, title):
         })
 
 
-
 def blog(request):
     return render(request, "app1/blog.html", context={
         "blog": blg.objects.all(),
@@ -44,13 +43,17 @@ def blogfilter(request, catogory):
 
 
 def render_blog(request, name):
-    blogid = request.POST["blognumber"]
+    # blogid = request.POST["blognumber"]
+    print(name)
     if request.method == "POST":
         return render(request, "app1/viewBlog.html", context={
-            "product": blg.objects.filter(id=blogid).get(),
+            "product": blg.objects.filter(id=name).get(),
             "extra": add_content_to_blog.objects.all(),
         })
-    return render(request, "app1/viewBlog.html")
+    return render(request, "app1/viewBlog.html", context={
+        "product": blg.objects.filter(id=name).get(),
+        "extra": add_content_to_blog.objects.all(),
+    })
 
 
 def gallery(request):

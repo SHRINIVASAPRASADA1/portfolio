@@ -27,6 +27,12 @@
   #mydate {
     color: white;
   }
+  #links{
+    min-height: 60vh;
+    max-height: 60vh;
+    min-width: 100%;
+    max-width: 100%;
+  }
 </style>
 
 {% endblock headings %}
@@ -40,11 +46,19 @@
   <h3 id="mytitle">{{ product.title }}</h3>
   <img id="myimg" src="{{ product.img.url }}" alt="" />
   <p id="mydes">{{ product.des }}</p>
-  {% for i in extra %} 
-  {% if product.title == i.blog_number|slugify %}
+  {% for i in extra %} {% if product.title == i.blog_number|slugify %}
   <img id="myimg" src="{{ i.img.url }}" alt="" />
+  {% if i.youtubeLink %}
+  <iframe
+    id="links"
+    src="{{ i.youtubeLink }}"
+    title="Aayirathil Oruvan - Celebration Of Life Video | Karthi | G.V. Prakash"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+  ></iframe>
+  {% endif %}
   <p id="mydes">{{ i.des }}</p>
-  {% endif %} 
-  {% endfor %}
+  {% endif %} {% endfor %}
 </div>
 {% endblock contents %}

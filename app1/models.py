@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 # Create your models here.
@@ -38,10 +39,14 @@ class blog(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse('render_blog', args=[str(self.id)])
+
 
 class add_content_to_blog(models.Model):
     blog_number = models.ForeignKey(blog, on_delete=models.CASCADE)
     img = models.ImageField(blank=True, upload_to="blog/%Y/%m/%d")
+    youtubeLink = models.URLField(blank=True)
     des = models.TextField(blank=True)
 
     def __str__(self):
