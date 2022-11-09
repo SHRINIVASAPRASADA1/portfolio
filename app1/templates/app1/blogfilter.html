@@ -9,7 +9,7 @@
     flex-wrap: wrap;
   }
   .category_item button {
-    font-size: 2.1rem;
+    /* font-size: 2.1rem; */
     border: 1px solid white;
     margin: 0.5rem;
     border-radius: 0.4rem;
@@ -28,31 +28,46 @@
     max-width: 17rem;
     min-height: 17rem;
     max-height: 17rem;
+    overflow: hidden;
+  }
+  #mytxtelip {
+    min-width: 15rem;
+    max-width: 15rem;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: white;
   }
 </style>
 {% endblock headings %}
 <!-- start here -->
 {% block contents %}
-<hr />
 <div class="category_item">
-    {% for item in category %}
-    <form action="{% url 'blogfilter' catogory=item.blog_catogorys_name %}" method="post">
-      {% csrf_token %}
-    <button value="{{ item.blog_catogorys_name }}" name="selected" type="submit" style="background-color: transparent; color: white">
+  {% for item in category %}
+  <form
+    action="{% url 'blogfilter' catogory=item.blog_catogorys_name %}"
+    method="post"
+  >
+    {% csrf_token %}
+    <button
+      value="{{ item.blog_catogorys_name }}"
+      name="selected"
+      type="submit"
+      style="background-color: transparent; color: white; font-size: 2.1rem;"
+    >
       {{ item.blog_catogorys_name }}
     </button>
   </form>
   {% endfor %}
 </div>
-<hr />
 <div class="category_item">
-  {% for item in blog %}
-  {% if selected == item.under|slugify %}
+  {% for item in blog %} {% if selected == item.under|slugify %}
   <form action="{% url 'render_blog' name=item.title %}" method="post">
     {% csrf_token %}
     <button
-    name="blognumber"
-    value="{{ item.id }}"
+      name="blognumber"
+      value="{{ item.id }}"
       style="
         background-color: rgba(0, 0, 0, 0);
         border: 1px solid white;
@@ -61,12 +76,11 @@
       class="mycard"
     >
       <img id="myimg" src="{{ item.img.url }}" alt="" />
-      <h1 style="color: white; font-size: 1.7rem">{{ item.title }}</h1>
+      <p id="mytxtelip">{{ item.title }}</p>
     </button>
   </form>
   {% else %}
   <!-- <h1>no item found {{ selected }}</h1> -->
-  {% endif %}
-  {% endfor %}
+  {% endif %} {% endfor %}
 </div>
 {% endblock contents %}

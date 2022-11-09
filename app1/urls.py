@@ -13,7 +13,7 @@ urlpatterns = [
     path('render_blog/blog=<name>/?', views.render_blog, name='render_blog'),
     path('catogory_blog/<catogory>/?', views.blogfilter, name='blogfilter'),
     path('product_view/<name>/?/<title>/?', views.product_view, name='product_view'),
-    path('sitemap.xml', sitemap, {'sitemaps': {"BlogSitemap": BlogSitemap}},
+    path('sitemap.xml', sitemap, {'sitemaps': {"BlogSitemap": BlogSitemap, "ImageSitemap": GallerySiteMap}},
          name='django.contrib.sitemaps.views.sitemap')
 
 ]

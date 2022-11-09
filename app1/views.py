@@ -43,16 +43,19 @@ def blogfilter(request, catogory):
 
 
 def render_blog(request, name):
-    # blogid = request.POST["blognumber"]
-    print(name)
     if request.method == "POST":
+        blogid = request.POST["blognumber"]
         return render(request, "app1/viewBlog.html", context={
-            "product": blg.objects.filter(id=name).get(),
+            "product": blg.objects.filter(id=blogid).get(),
             "extra": add_content_to_blog.objects.all(),
+            "ListOfContent": ListFoContent.objects.all(),
+            "ListOfImages": ListOfImage.objects.all()
         })
     return render(request, "app1/viewBlog.html", context={
         "product": blg.objects.filter(id=name).get(),
         "extra": add_content_to_blog.objects.all(),
+        "ListOfContent": ListFoContent.objects.all(),
+        "ListOfImages": ListOfImage.objects.all()
     })
 
 
@@ -73,7 +76,7 @@ def contact(request):
         body = request.POST["body"]
         send_mail(f"Thanks For contacting us.. subject= {subject}",
                   f"Your Request has been submited our support team contact you ... for further query email = {email}, body ={body} ",
-                  settings.EMAIL_HOST_USER, ["prasadashrinivasa@gmail.com", email])
+                  settings.EMAIL_HOST_USER, ["prasadashrinivasa@gmail.com"])
     return render(request, "app1/contact.html")
 
 

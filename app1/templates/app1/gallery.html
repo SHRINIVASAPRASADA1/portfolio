@@ -9,18 +9,18 @@
     flex-wrap: wrap;
   }
 
-  .mycard{
+  .mycard {
     width: 14rem;
     height: 14rem;
     margin: 1rem;
   }
 
-  .mycard img{
+  .mycard img {
     object-fit: cover;
     width: 13rem;
     height: 13rem;
   }
-  .mycard p{
+  .mycard p {
     color: white;
   }
 </style>
@@ -29,14 +29,16 @@
 <!-- start here -->
 {% block contents %}
 
-<div class="fb">
-  {% for i in images %}
+  <div class="fb">
+    {% for i in images %}
 
-  <div class="mycard">
-    <img src="{{ i.img.url }}" alt="" />
-    <p>{{ i.date }}</p>
+    <button class="mycard">
+      <a href="{{ i.img.url }}">
+        <img src="{{ i.img.url }}" alt="" />
+      <p>{{ i.date }}</p>
+      </a>
+    </button>
+    {% endfor %}
   </div>
-  {% endfor %}
-</div>
 
 {% endblock contents %}
