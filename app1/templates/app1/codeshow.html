@@ -1,0 +1,82 @@
+{% extends 'app1/base.html' %}
+<!-- heading start here  -->
+{% block headings %}
+<style>
+  .divpart {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgb(255, 255, 255);
+  }
+  .html,
+  .js,
+  .css {
+    word-wrap: break-word;
+    width: 33%;
+    min-height: 100vh;
+    padding: 1rem;
+  }
+  .html {
+    background-color: rgba(132, 243, 150, 0.398);
+  }
+  .css {
+    background-color: rgba(75, 75, 234, 0.195);
+  }
+  .js {
+    background-color: rgba(251, 114, 114, 0.169);
+  }
+  pre{
+    white-space: pre-wrap;
+    white-space: pre-wrap;       
+    white-space: -moz-pre-wrap;  
+    white-space: -pre-wrap;      
+    white-space: -o-pre-wrap;    
+    word-wrap: break-word; 
+  }
+  @media screen and (max-width:1000px) {
+    .divpart {
+    display: block;
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgb(255, 255, 255);
+  }
+  .html,
+  .js,
+  .css {
+    word-wrap: break-word;
+    width: 100%;
+    min-height: auto;
+    padding: 1rem;
+  }
+  }
+  p{
+    word-wrap: break-word;
+  }
+</style>
+{% endblock headings %}
+<!-- start here -->
+{% block contents %}
+<div class="divpart">
+  <div class="html">
+    <h2>Html</h2>
+    <p><pre>
+{{ code.html }}
+    </pre></p>
+  </div>
+  <div class="css">
+    <h2>Css</h2>
+    <p><pre>
+{{ code.css }}
+    </pre></p>
+  </div>
+
+  <div class="js">
+    <h2>Javascript</h2>
+    <p><pre>
+{{ code.js }}
+    </pre></p>
+  </div>
+</div>
+
+{% endblock contents %}
