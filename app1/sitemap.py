@@ -26,3 +26,23 @@ class GallerySiteMap(Sitemap):
 
     def lastmod(self, obj):
         return obj.date
+
+class HtmlSiteMap(Sitemap):
+    changefreq = "never"
+    priority = 0.9
+
+    def items(self):
+        return HtmlCode.objects.all()
+
+    def lastmod(self, obj):
+        return obj.date
+
+class CssLinkSiteMap(Sitemap):
+    changefreq = "never"
+    priority = 0.9
+
+    def items(self):
+        return CssFiles.objects.all()
+
+    def lastmod(self, obj):
+        return obj.date

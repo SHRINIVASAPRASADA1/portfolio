@@ -15,7 +15,7 @@ class MyBlogs(admin.ModelAdmin):
 
 @admin.register(add_content_to_blog)
 class ContentsForBlog(admin.ModelAdmin):
-    list_display = ('id','blog_number', 'img', 'des')
+    list_display = ('id', 'blog_number', 'img', 'des')
 
 
 @admin.register(blog_catogory)
@@ -36,3 +36,13 @@ class ListOfContents(admin.ModelAdmin):
 @admin.register(ListOfImage)
 class ListOfImages(admin.ModelAdmin):
     list_display = ('blogPostNumber', 'ImageSelect', 'imageUrl')
+
+
+@admin.register(HtmlCode)
+class HtmlCodes(admin.ModelAdmin):
+    list_display = ('title', 'date', 'description')
+
+
+@admin.register(CssFiles)
+class CssFiles(admin.ModelAdmin):
+    list_display = ('title', 'file_choice', 'date')

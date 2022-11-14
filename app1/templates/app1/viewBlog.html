@@ -20,7 +20,9 @@
     {% for i in extra %}
     <!-- if condition  -->
     {% if product.title|slugify == i.blog_number|slugify %}
+    {% if i.img %}
     <img id="myimg" src="{{ i.img.url }}" alt=""/>
+    {% endif %}
     {% if i.youtubeLink %}
     <iframe
             id="links"

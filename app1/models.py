@@ -45,8 +45,7 @@ class blog(models.Model):
 
 class add_content_to_blog(models.Model):
     blog_number = models.ForeignKey(blog, on_delete=models.CASCADE)
-    img = models.ImageField(blank=True, upload_to="blog/%Y/%m/%d")
-    image_link = models.URLField(blank=True)
+    img = models.ImageField(blank=True, upload_to="vlog")
     youtubeLink = models.URLField(blank=True)
     des = models.TextField(blank=True)
 
@@ -83,3 +82,31 @@ class gallery(models.Model):
 
     def get_absolute_url(self):
         return f'/media/{self.img}'
+
+
+class HtmlCode(models.Model):
+    title = models.TextField(blank=False)
+    image = models.ImageField(blank=True)
+    css = models.TextField(blank=False)
+    js = models.TextField(blank=True)
+    html = models.TextField(blank=False)
+    description = models.TextField(blank=True)
+    date = models.DateTimeField(auto_now=True, blank=False)
+
+    def __str__(self):
+        return str(self.title)
+
+    def get_absolute_url(self):
+        return reverse('codeblock', args=[str(self.id)])
+
+
+class CssFiles(models.Model):
+    title = models.TextField(blank=False)
+    file_choice = models.FileField(blank=False)
+    date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return str(self.title)
+
+    def get_absolute_url(self):
+        return f'/media/{self.file_choice}'

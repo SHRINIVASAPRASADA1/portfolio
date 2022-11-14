@@ -4,6 +4,7 @@ from django.shortcuts import render
 from .models import *
 from .models import blog as blg
 from .models import gallery as gal
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -82,3 +83,87 @@ def contact(request):
 
 def render_contact(request):
     return render(request, "app1/contact.html")
+
+
+def display_code_content(request):
+    return render(request, "app1/codecontent.html", context={
+        "codes": HtmlCode.objects.all()
+    })
+
+
+def html_render(request, title):
+    code = HtmlCode.objects.filter(id=int(title)).get()
+    if request.method == "POST":
+        if request.POST["para"] == "view":
+            code = HtmlCode.objects.filter(id=int(request.POST["nowid"])).get()
+            full_process = f"""
+                 <!DOCTYPE html>
+            <html lang="en">
+              <head>
+                <meta charset="UTF-8" />
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <title>{code.title}</title>
+                <style>
+                 {code.css}
+                </style>
+              </head>
+              <body>
+                   {code.html}
+
+                  <script>
+                   {code.js}
+                  </script>
+              </body>
+                """
+            return HttpResponse(full_process)
+        if request.POST["para"] == "code":
+            code = HtmlCode.objects.filter(id=int(request.POST["nowid"])).get()
+            return render(request, "app1/codeshow.html", context={
+                "code": code,
+            })
+
+    full_process = f"""
+                     <!DOCTYPE html>
+                <html lang="en">
+                  <head>
+                    <meta charset="UTF-8" />
+                    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                    <title>{code.title}</title>
+                    <style>
+                     {code.css}
+                    </style>
+                  </head>
+                  <body>
+                       {code.html}
+
+                      <script>
+                       {code.js}
+                      </script>
+                  </body>
+                    """
+    return HttpResponse(full_process)
+
+
+
+def bad_request(request, exception):
+    return HttpResponse(f"bad req {exception}")
+
+
+def permission_denied(request, exception):
+    return HttpResponse(f"permission_denied req {exception}")
+
+
+def page_not_found(request, exception):
+    return HttpResponse(f"page_not_found req {exception}")
+
+
+def server_error(request):
+    return HttpResponse("server_error req")
+
+
+def csslink(request):
+    return render(request, "app1/cssLink.html", context={
+        "css": CssFiles.objects.all()
+    })
