@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-q=ats3@75$2o$!tn#c32+$syg9os#25f^vn2x#_e6n#)8$5i5f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -71,7 +71,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'portfolio.wsgi.application'
-
+ROBOTS_USE_SITEMAP = True
+ROBOTS_SITEMAP_VIEW_NAME = 'cached-sitemap'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -102,6 +103,26 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:3000",
+    'http://localhost:3000',
+    'http://192.168.43.33:3000',
+    'https://apirunserver.herokuapp.com',
+    'https://api.razorpay.com',
+    'http://44.202.70.45',
+    'https://bitdev.live',
+    'http://bitdev.live'
+]
+CSRF_TRUSTED_ORIGINS = [
+    "http://127.0.0.1:3000",
+    'http://localhost:3000',
+    'http://192.168.43.33:3000',
+    'https://api.razorpay.com',
+    'http://44.202.70.45',
+    'https://bitdev.live',
+    'http://bitdev.live'
+]
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
@@ -119,10 +140,14 @@ SECURE_REFERRER_POLICY = "no-referrer-when-downgrade"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
-
+CORS_ORIGIN_ALLOW_ALL = True
 STATIC_URL = 'static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "front/build/static")
+]
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
