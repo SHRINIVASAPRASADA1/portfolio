@@ -146,7 +146,6 @@ def html_render(request, title):
     return HttpResponse(full_process)
 
 
-
 def bad_request(request, exception):
     return HttpResponse(f"bad req {exception}")
 
