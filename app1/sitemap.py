@@ -17,6 +17,7 @@ class BlogSitemap(Sitemap):
     def lastmod(self, obj):
         return obj.date
 
+
 class GallerySiteMap(Sitemap):
     changefreq = "never"
     priority = 0.9
@@ -27,6 +28,7 @@ class GallerySiteMap(Sitemap):
     def lastmod(self, obj):
         return obj.date
 
+
 class HtmlSiteMap(Sitemap):
     changefreq = "never"
     priority = 0.9
@@ -36,6 +38,7 @@ class HtmlSiteMap(Sitemap):
 
     def lastmod(self, obj):
         return obj.date
+
 
 class CssLinkSiteMap(Sitemap):
     changefreq = "never"

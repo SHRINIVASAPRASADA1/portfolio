@@ -1,18 +1,15 @@
 from django.conf import settings
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
-
 from .forms import QuizForm
 from .models import *
 from .models import blog as blg
 from .models import gallery as gal
 from django.http import HttpResponse
-from django.views.decorators.cache import cache_control
 
 
 # Create your views here.
 def index(request):
-    # print(request.META['DESKTOP_SESSION'])
     return render(request, "app1/index.html", context={
         "project": projects.objects.all()
     })
@@ -33,12 +30,12 @@ def blog(request):
 
 
 def blogfilter(request, catogory):
-    selected = request.POST["selected"]
-    for i in blg.objects.all():
-        if i.under == selected:
-            print(True)
-        else:
-            print(type(str(i.under)))
+    # selected = request.POST["selected"]
+    # for i in blg.objects.all():
+    #     if i.under == selected:
+    #         print(True)
+    #     else:
+    #         print(type(str(i.under)))
     if request.method == 'POST':
         return render(request, "app1/blogfilter.html", context={
             "blog": blg.objects.all(),
@@ -181,19 +178,15 @@ def Quiz(request):
 
 def QUizView(request, cat):
     if request.method == "POST":
-        selected = Quizs.objects.filter(catogory=cat).all()
-        print(CreateQuiz.objects.filter(catogory=cat).get().title)
         return render(request, "app1/openquiz.html", context={
-            "items": selected,
+            "items": Quizs.objects.filter(catogory=cat).all(),
             "catogory": CreateQuiz.objects.filter(catogory=cat).get().title
         })
     return render(request, "app1/openquiz.html")
 
 
 def report_answer(request):
-    print(request.method)
     if request.method == "POST":
-        print(True)
         if "catos" not in request.POST:
             return redirect("quiz")
         rightans = []
@@ -221,7 +214,6 @@ def search_report(request):
     return HttpResponse("Report")
 
 
-@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def simple_redirect(request, email):
     return render(request, "app1/output.html", context={
         "email": email,
@@ -230,7 +222,6 @@ def simple_redirect(request, email):
 
 
 def createQuiz(request):
-    myform = QuizForm(request.POST, request.FILES)
     return render(request, "app1/createquiz.html", context={
-        "myform": myform
+        "myform": QuizForm(request.POST, request.FILES)
     })

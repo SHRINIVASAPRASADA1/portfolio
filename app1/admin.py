@@ -70,4 +70,4 @@ class CreateQuizz(admin.ModelAdmin):
 
 @admin.register(QuizResult)
 class QuizResults(admin.ModelAdmin):
-    list_display = ('selected', 'email','total','output')
+    list_display = ('selected', 'email', 'total', 'output')
