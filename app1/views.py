@@ -1,14 +1,18 @@
 from django.conf import settings
 from django.core.mail import send_mail
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
+from .forms import QuizForm
 from .models import *
 from .models import blog as blg
 from .models import gallery as gal
 from django.http import HttpResponse
+from django.views.decorators.cache import cache_control
 
 
 # Create your views here.
 def index(request):
+    # print(request.META['DESKTOP_SESSION'])
     return render(request, "app1/index.html", context={
         "project": projects.objects.all()
     })
@@ -165,4 +169,68 @@ def server_error(request):
 def csslink(request):
     return render(request, "app1/cssLink.html", context={
         "css": CssFiles.objects.all()
+    })
+
+
+def Quiz(request):
+    return render(request, "app1/quiz.html", context={
+        "quiz": CreateQuiz.objects.all(),
+        "cat": Quiz_topic.objects.all()
+    })
+
+
+def QUizView(request, cat):
+    if request.method == "POST":
+        selected = Quizs.objects.filter(catogory=cat).all()
+        print(CreateQuiz.objects.filter(catogory=cat).get().title)
+        return render(request, "app1/openquiz.html", context={
+            "items": selected,
+            "catogory": CreateQuiz.objects.filter(catogory=cat).get().title
+        })
+    return render(request, "app1/openquiz.html")
+
+
+def report_answer(request):
+    print(request.method)
+    if request.method == "POST":
+        print(True)
+        if "catos" not in request.POST:
+            return redirect("quiz")
+        rightans = []
+        alter = sorted(list(request.POST))
+        alter.pop()
+        alter.pop()
+        alter.pop()
+        for item in alter:
+            rightans.append(request.POST[item])
+        result = QuizResult(selected=request.POST["catos"], total=len(alter) / 2,
+                            output=len(alter) - len(set(rightans)),
+                            email=request.POST["email"])
+        result.save()
+        return redirect("simple_redirect", email=request.POST["email"])
+    return HttpResponse("Server Busy")
+
+
+def search_report(request):
+    if request.method == "POST":
+        if "search" in request.POST:
+            return render(request, "app1/output.html", context={
+                "email": request.POST["email"],
+                "all": QuizResult.objects.filter(email=request.POST["email"]).order_by("-date").all()
+            })
+    return HttpResponse("Report")
+
+
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
+def simple_redirect(request, email):
+    return render(request, "app1/output.html", context={
+        "email": email,
+        "all": QuizResult.objects.filter(email=email).order_by("-date").all()
+    })
+
+
+def createQuiz(request):
+    myform = QuizForm(request.POST, request.FILES)
+    return render(request, "app1/createquiz.html", context={
+        "myform": myform
     })

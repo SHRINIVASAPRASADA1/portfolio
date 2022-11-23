@@ -55,6 +55,7 @@ class add_content_to_blog(models.Model):
 
 
 class ListFoContent(models.Model):
+    title = models.TextField(blank=True)
     blogPostNumber = models.ForeignKey(add_content_to_blog, on_delete=models.CASCADE)
     listText = models.TextField(blank=False)
 
@@ -110,3 +111,54 @@ class CssFiles(models.Model):
 
     def get_absolute_url(self):
         return f'/media/{self.file_choice}'
+
+
+class ViewCount(models.Model):
+    data1 = models.TextField(blank=False)
+    system = models.TextField(blank=False)
+    meta = models.TextField(blank=False)
+
+    def __str__(self):
+        return str(self.system)
+
+
+class Quiz_topic(models.Model):
+    title = models.TextField(blank=False)
+
+    def __str__(self):
+        return str(self.title)
+
+
+class CreateQuiz(models.Model):
+    catogory = models.ForeignKey(Quiz_topic, on_delete=models.CASCADE, blank=True, null=True)
+    title = models.TextField(blank=False)
+    name = models.TextField(blank=False)
+    auth_mail = models.TextField(blank=False)
+
+    def __str__(self):
+        return str(self.title)
+
+
+class Quizs(models.Model):
+    catogory = models.ForeignKey(CreateQuiz, on_delete=models.CASCADE, blank=True, null=True)
+    qus = models.TextField(blank=False)
+    op1 = models.TextField(blank=False)
+    op2 = models.TextField(blank=False)
+    op3 = models.TextField(blank=False)
+    op4 = models.TextField(blank=False)
+    ans = models.TextField(blank=False)
+
+    def __str__(self):
+        out = self.catogory if not None else self.qus
+        return str(out)
+
+
+class QuizResult(models.Model):
+    selected = models.TextField(blank=False)
+    total = models.TextField(blank=False)
+    output = models.TextField(blank=False)
+    date = models.DateTimeField(auto_now=True, blank=False)
+    email = models.TextField(blank=False)
+
+    def __str__(self):
+        return str(self.email)

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{ email }}</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap");
+      * {
+        color: black;
+        font-family: "Nunito", sans-serif;
+        font-weight: bold;
+      }
+
+      .mytable {
+        width: 50%;
+        margin: 0.1rem 25%;
+      }
+      .mytable table {
+        border: 0.1rem solid black;
+        padding: 0.5rem;
+        width: 100%;
+        /* max-width: 0.4rem 25%; */
+      }
+      .mytable table td {
+        border: 1px solid black;
+        padding: 0.5rem;
+        text-overflow: ellipsis;
+      }
+      h2 {
+        font-weight: lighter;
+        font-size: 1.1rem;
+      }
+      .qcon {
+    width: 100%;
+    /* background-color: blue; */
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+      .box {
+        width: 30%;
+      }
+      #catogory {
+        width: 17rem;
+        margin: 0%;
+        height: 2rem;
+        margin-top: 1.3rem;
+        margin-bottom: 0.4rem;
+        margin-right: 0.4rem;
+        outline: none;
+        border: none;
+        background-color: rgba(0, 0, 0, 0.099);
+      }
+      #sbtn {
+        width: 10%;
+        margin-top: 1.8rem;
+
+        margin: 0%;
+        height: 2rem;
+        margin-bottom: 0.4rem;
+        outline: none;
+        border: none;
+        background-color: rgba(0, 0, 0, 0.099);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>To Find Result Use This ..........</h1>
+    <form class="qcon" action="{% url 'search_report' %}" method="post">
+      {% csrf_token %}
+
+      <div class="box">
+        <input
+          placeholder="Enter Your Email To Find Results ?"
+          type="email"
+          name="email"
+          id="catogory"
+          aria-required="true"
+          required
+        />
+        <button id="sbtn" name="search" type="submit">Submit</button>
+      </div>
+    </form>
+    <h1 style="text-align: center; margin-top: 10vh">{{ result }}</h1>
+    <h1 style="text-align: center; margin-top: 0.4rem">Email : {{ email }}</h1>
+
+    <div class="mytable">
+      <table>
+        <tr>
+          <td>
+            <h1 style="text-align: center; font-size: 1.5rem">Quiz</h1>
+          </td>
+          <td>
+            <h1 style="text-align: center; font-size: 1.5rem">
+              Total Question
+            </h1>
+          </td>
+          <td>
+            <h1 style="text-align: center; font-size: 1.5rem">Right Answer</h1>
+          </td>
+          <td>
+            <h1 style="text-align: center; font-size: 1.5rem">
+              Date Of Attend
+            </h1>
+          </td>
+        </tr>
+        {% for item in all %}
+        <tr>
+          <td>
+            <h2 style="text-align: center; text-overflow: ellipsis">
+              {{ item.selected }}
+            </h2>
+          </td>
+
+          <td>
+            <h2 style="text-align: center; text-overflow: ellipsis">
+              {{ item.total }}
+            </h2>
+          </td>
+
+          <td>
+            <h2 style="text-align: center; text-overflow: ellipsis">
+              {{ item.output }}
+            </h2>
+          </td>
+          <td>
+            <h2 style="text-align: center; text-overflow: ellipsis">
+              {{ item.date }}
+            </h2>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </body>
+</html>

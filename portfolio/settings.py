@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-q=ats3@75$2o$!tn#c32+$syg9os#25f^vn2x#_e6n#)8$5i5f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -146,10 +146,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
+    os.path.join(BASE_DIR, "static"),
+    "/home/shrinivasaprasada/Desktop/workspace/python/django/portfolio/static/"
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'portfolio/')
-
+STATIC_ROOT = "/home/shrinivasaprasada/Desktop/workspace/python/django/portfolio"
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'

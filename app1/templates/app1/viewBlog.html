@@ -35,8 +35,20 @@
     {% endif %}
     <!-- end of if  -->
     <p id="mydes">{{ i.des }}</p>
+   
 
+    {% for con in ListOfContent %}
+    
+    {% if i|slugify == con.blogPostNumber|slugify %}
+     
+    <h1 style=" text-align: center;">{{ con.title  }}</h1>
+ 
+     {% endif %}
+
+    {% endfor %}
+     
     <ul id="liststyle">
+
         {% for con in ListOfContent %}
 
         <!--        <h1>list= {{ con.blogPostNumber }} conent= {{ i }}</h1>-->

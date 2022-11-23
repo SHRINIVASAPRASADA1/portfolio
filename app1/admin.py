@@ -46,3 +46,28 @@ class HtmlCodes(admin.ModelAdmin):
 @admin.register(CssFiles)
 class CssFiles(admin.ModelAdmin):
     list_display = ('title', 'file_choice', 'date')
+
+
+@admin.register(ViewCount)
+class UserData(admin.ModelAdmin):
+    list_display = ('data1', 'system', 'meta')
+
+
+@admin.register(Quizs)
+class Quizeee(admin.ModelAdmin):
+    list_display = ('qus', 'op1', 'op2', 'op3', 'op4', 'ans',)
+
+
+@admin.register(Quiz_topic)
+class Quiz_topic_ad(admin.ModelAdmin):
+    list_display = ('title',)
+
+
+@admin.register(CreateQuiz)
+class CreateQuizz(admin.ModelAdmin):
+    list_display = ('title', 'catogory')
+
+
+@admin.register(QuizResult)
+class QuizResults(admin.ModelAdmin):
+    list_display = ('selected', 'email','total','output')

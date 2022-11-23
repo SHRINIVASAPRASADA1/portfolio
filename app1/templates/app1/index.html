@@ -1,25 +1,9 @@
-{% extends 'app1/base.html' %}
-<!-- heading start here  -->
-{% block headings %}
+{% extends 'app1/base.html' %} {% block headings %}
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-{% endblock headings %}
-<!-- start here -->
-{% block contents %}
+{% endblock headings %} {% block contents %}
 
 <h1 id="maintitle">Code studio</h1>
 <h1 id="maintitle">for the Computer world</h1>
-
-<!--<lottie-player-->
-<!--  id="anime"-->
-<!--  src="https://assets10.lottiefiles.com/packages/lf20_tQGiRrPHPP.json"-->
-<!--  mode="bounce"-->
-<!--  background="transparent"-->
-<!--  speed="0.8"-->
-<!--  style="width: 100%"-->
-<!--  loop-->
-<!--  autoplay-->
-<!--&gt;</lottie-player>-->
-<!-- about  -->
 <div class="partition">
   <div class="part1">
     <lottie-player
@@ -35,22 +19,29 @@
   <div class="part2">
     <h1 id="titleabout">About</h1>
     <h1 id="aboutme">
-      My name is SHRINIVASAPRASADA , I'am a Student Devloper , I complited my
-      BCA Degree , I help Other's To Fulfil Their business to idea with my coing
-      skill and technology
+      My name is Shrinivasa Prasada, and I have a BCA degree and am currently
+      pursuing an MCA. In my spare time, I develop android and iOS apps as well
+      as web applications. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; I started my
+      coding journey on my 11th standard. Now I am continuing with computer
+      science. In my free time I am learning new technology . And build
+      software's
     </h1>
   </div>
 </div>
-<!-- end of about  -->
-<!-- start of skill  -->
 <div class="partition">
   <div class="part1">
-    <h1 id="titleabout">Skills</h1>
+    <h1 id="titleabout">Technical Skills</h1>
     <h1 id="aboutme">
-      language used : Python , Dart , Javascript ; Framework : Django , Flask ,
-      Flutter , React , Express ; DataBase : Mysql , Mongo , Oracle , Postgress
-      , firebase ; Others : Css , Html , Json , Machine Learning , Linux , Bash
-      ;
+      <pre>
+        Language : Python , Javascript , C++ , Dart ,Java ;
+        Framework : Flutter , React.js , Django ,Flask , Next.js ;
+        Operating System : Linux(Ubuntu , Arch , Kali , Fedora ) , Windows ;
+        Librays : Tensorflow , Sklearn , Pandas , Numpy , Keras .. Others ;
+        Database : Mysql , Mongo , PostgreSQL , Firebase ;
+        Others : Html , Css , Jquerry ;
+      </pre>
     </h1>
   </div>
   <div class="part2">
@@ -66,19 +57,50 @@
   </div>
 </div>
 
+<!-- hobby  -->
+
+<div class="partition">
+  <div class="part1">
+    <lottie-player
+      id="anime"
+      src="https://assets10.lottiefiles.com/private_files/lf30_tr47e8ve.json"
+      background="transparent"
+      speed="1"
+      style="width: 60%"
+      loop
+      autoplay
+    ></lottie-player>
+  </div>
+  <div class="part2">
+    <h1 id="titleabout">hobby & Social Account</h1>
+    <h1 id="aboutme">
+      <pre>
+        hobby : Laptop, Planting , Swimming , Cooking , Exploring  ;
+        GitHub : <a href="https://github.com/SHRINIVASAPRASADA1">GitHub</a>
+        Instagram : <a href="https://www.instagram.com/shrinivasaprasada/?hl=en">Instagram</a>
+        Twitter : <a href="https://twitter.com/PrasadaShrin">Twitter</a>
+        Linkedin : <a href="https://www.linkedin.com/in/shrinivasa-gowda-8b1477251/">Linkedin</a>
+        Email : <a href="mailto:prasadashrinivasa@gmail.com">Email</a>
+      </pre>
+    </h1>
+  </div>
+</div>
+
 <h1 id="titles">Projects Compleated</h1>
 <div class="flexcoxs">
   {% for item in project %}
-  <form action="{% url 'product_view' name=item.id title=item.title %}" method="post">
+  <form
+    action="{% url 'product_view' name=item.id title=item.title %}"
+    method="post"
+  >
     {% csrf_token %}
     <button class="card">
-      <input type="hidden" name="projectid" value="{{ item.id }}">
+      <input type="hidden" name="projectid" value="{{ item.id }}" />
       <img id="logoss" src="{{ item.image.url }}" alt="" />
       <h2 id="titlehead">{{ item.title }}</h2>
     </button>
   </form>
   {% endfor %}
 </div>
-<!-- <h1 id="titles">Happy Clients</h1>d -->
 
 {% endblock contents %}
