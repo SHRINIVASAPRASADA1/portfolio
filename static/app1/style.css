@@ -98,6 +98,9 @@ h4{
     outline: none;
     display: block;
   }
+  pre{
+    font-size: 1.5rem;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -120,6 +123,9 @@ h4{
   .nav > h1 {
     /* color: white; */
     text-align: center;
+  }
+  pre{
+    font-size: 1.5rem;
   }
 }
 
@@ -227,6 +233,9 @@ h4{
     width: 100%;
     height: auto;
   }
+  pre{
+    font-size: 1.5rem;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -263,5 +272,8 @@ h4{
   .partition .part2 {
     width: 100%;
     height: auto;
+  }
+  pre{
+    font-size: 1.5rem;
   }
 }

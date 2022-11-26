@@ -138,6 +138,9 @@ class CreateQuiz(models.Model):
     def __str__(self):
         return str(self.title)
 
+    def get_absolute_url(self):
+        return f"quizz/{self.id}/%3F"
+
 
 class Quizs(models.Model):
     catogory = models.ForeignKey(CreateQuiz, on_delete=models.CASCADE, blank=True, null=True)
@@ -162,3 +165,11 @@ class QuizResult(models.Model):
 
     def __str__(self):
         return str(self.email)
+
+
+class VisitorIpAddress(models.Model):
+    ip = models.TextField(blank=True)
+    req = models.TextField(blank=True)
+
+    def __str__(self):
+        return str(self.ip)

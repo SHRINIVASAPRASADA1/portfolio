@@ -26,7 +26,7 @@ urlpatterns = [
     path('product_view/<name>/?/<title>/?', views.product_view, name='product_view'),
     path('sitemap.xml', sitemap, {
         'sitemaps': {"BlogSitemap": BlogSitemap, "ImageSitemap": GallerySiteMap, "HtmlSiteMap": HtmlSiteMap,
-                     "cssSiteMap": CssLinkSiteMap}},
+                     "cssSiteMap": CssLinkSiteMap, "Quizz": CreateQuizzz}},
          name='django.contrib.sitemaps.views.sitemap')
 ]
 

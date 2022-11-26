@@ -65,10 +65,10 @@
     </style>
   </head>
   <body>
-    <h1>To Find Result Use This ..........</h1>
-    <form class="qcon" action="{% url 'search_report' %}" method="post">
-      {% csrf_token %}
-
+    <!-- <h1>To Find Result Use This ..........</h1> -->
+    <!-- <form class="qcon" action="{% url 'search_report' %}" method="post">
+      {% csrf_token %} -->
+<!-- 
       <div class="box">
         <input
           placeholder="Enter Your Email To Find Results ?"
@@ -79,8 +79,8 @@
           required
         />
         <button id="sbtn" name="search" type="submit">Submit</button>
-      </div>
-    </form>
+      </div> -->
+    <!-- </form> -->
     <h1 style="text-align: center; margin-top: 10vh">{{ result }}</h1>
     <h1 style="text-align: center; margin-top: 0.4rem">Email : {{ email }}</h1>
 

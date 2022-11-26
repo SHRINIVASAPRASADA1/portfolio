@@ -49,3 +49,14 @@ class CssLinkSiteMap(Sitemap):
 
     def lastmod(self, obj):
         return obj.date
+
+
+class CreateQuizzz(Sitemap):
+    changefreq = "never"
+    priority = 0.9
+
+    def items(self):
+        return CreateQuiz.objects.all()
+
+    def lastmod(self, obj):
+        return obj.id

@@ -9,6 +9,14 @@
     justify-content: space-around;
     flex-wrap: wrap;
   }
+
+  .qconn {
+    width: 100%;
+    /* background-color: blue; */
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
   .qcard {
     width: 14rem;
     height: 7rem;
@@ -23,8 +31,32 @@
     object-fit: contain;
     background-repeat: no-repeat;
   }
-  .box{
+  .box {
     width: 30%;
+  }
+  @media screen and (max-width: 900px) {
+    #catogory {
+      width: 20rem;
+      height: 2rem;
+      align-self: center;
+      align-items: center;
+      align-content: center;
+    }
+    #sbtn {
+      width: 12rem;
+      height: 2rem;
+      align-self: center;
+      align-items: center;
+      align-content: center;
+    }
+    .qconn {
+      width: 100%;
+      display: block;
+      flex-wrap: wrap;
+      align-self: center;
+      align-items: center;
+      align-content: center;
+    }
   }
   #catogory {
     width: 17rem;
@@ -48,13 +80,36 @@
     border: none;
     background-color: rgba(0, 0, 0, 0.099);
   }
-
+  @media screen and (max-width: 1200px) {
+    #catogory {
+      width: 20rem;
+      height: 2rem;
+      align-self: center;
+      align-items: center;
+      align-content: center;
+    }
+    #sbtn {
+      width: 12rem;
+      height: 2rem;
+      align-self: center;
+      align-items: center;
+      align-content: center;
+    }
+    .qconn {
+      width: 100%;
+      display: block;
+      flex-wrap: wrap;
+      align-self: center;
+      align-items: center;
+      align-content: center;
+    }
+  }
 </style>
 
 {% endblock headings %}
 <!-- start here -->
 {% block contents %}
-<form class="qcon" action="{% url 'search_report' %}" method="post">
+<form class="qconn" action="{% url 'search_report' %}" method="post">
   {% csrf_token %}
 
   <div class="box">

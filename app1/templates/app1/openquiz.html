@@ -22,6 +22,7 @@
         list-style-type: lower-alpha;
         list-style: lower-alpha;
     }
+    
    #email{
     width: 40%;
     height: 2rem;
@@ -37,6 +38,7 @@
 <form action="{% url 'report'  %}" method="post">
     {% csrf_token %}
   <input required placeholder="Enter you Mail ?" type="email" name="email" id="email">
+
   <input type="hidden" value="{{ catogory }}" name="catos">
 
 <ul class="qmylist" >

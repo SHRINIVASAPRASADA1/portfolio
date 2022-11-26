@@ -8,8 +8,19 @@ from .models import gallery as gal
 from django.http import HttpResponse
 
 
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return str(ip)
+
+
 # Create your views here.
 def index(request):
+    collect = VisitorIpAddress(ip=get_client_ip(request), req=str(request.META))
+    collect.save()
     return render(request, "app1/index.html", context={
         "project": projects.objects.all()
     })

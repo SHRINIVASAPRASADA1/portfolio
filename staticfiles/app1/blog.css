@@ -1,0 +1,100 @@
+.centerunlimited {
+  width: 70%;
+  /* background-color: blue; */
+  margin: 0.2rem 15%;
+}
+#mytitle {
+  text-align: center;
+  /* color: white; */
+  font-size: 2rem;
+}
+#myimg {
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  min-height: 50vh;
+  max-height: 50vh;
+  object-fit: contain;
+  margin: 0.7rem;
+}
+
+#mydes {
+  /* text-align: center; */
+  /* color: white; */
+  font-size: 1.5rem;
+  margin: 4% 15%;
+  font-size: medium;
+  word-wrap: break-word;
+}
+#mydate {
+  /* color: white; */
+}
+#links {
+  min-height: 60vh;
+  max-height: 60vh;
+  min-width: 70%;
+  max-width: 70%;
+  margin: 0% 15%;
+}
+#listoftext {
+  /* color: white; */
+  font-weight: 300;
+}
+#liststyle {
+  list-style-type: decimal;
+  list-style: decimal;
+  /* color: white; */
+  margin: 0% 15%;
+  word-wrap: break-word;
+  font-weight: lighter;
+}
+
+@media screen and (max-width: 1000px) {
+  .centerunlimited {
+    width: 100%;
+    /* background-color: blue; */
+    margin: 0%;
+  }
+  #mytitle {
+    text-align: center;
+    /* color: white; */
+    font-size: 2rem;
+    font-weight: lighter;
+    margin: 5%;
+  }
+  #myimg {
+    max-width: 90%;
+    min-width: 90%;
+    min-height: auto;
+    max-height: auto;
+    object-fit: contain;
+    margin: 5%;
+  }
+  #mydes {
+    /* text-align: center; */
+    /* color: white; */
+    margin: 5% 5%;
+    font-size: medium;
+    word-wrap: break-word;
+  }
+  #mydate {
+    /* color: white; */
+    margin: 0% 5%;
+  }
+  #links {
+    min-height: 45vh;
+    max-height: 45vh;
+    min-width: 90%;
+    max-width: 90%;
+    object-fit: contain;
+    margin: 5%;
+  }
+  #listoftext {
+    /* color: white; */
+  }
+  #liststyle {
+    list-style-type: decimal;
+    list-style: decimal;
+    /* color: white; */
+  }
+}
