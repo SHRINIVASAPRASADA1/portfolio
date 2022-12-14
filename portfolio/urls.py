@@ -8,9 +8,3 @@ urlpatterns = [
                   re_path(r'^robots\.txt', include('robots.urls')),
                   path('', include("app1.urls")),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-# if settings.DEBUG:
-#     urlpatterns += static(settings.MEDIA_URL,
-#                           document_root=settings.MEDIA_ROOT) + urlpatterns
-# else:
-#     urlpatterns += static(settings.MEDIA_URL,
-#                           document_root=settings.MEDIA_ROOT) + urlpatterns

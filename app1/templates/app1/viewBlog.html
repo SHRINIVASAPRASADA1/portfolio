@@ -1,91 +1,63 @@
-{% extends 'app1/base.html' %}
-{% load static %}
-<!-- heading start here  -->
-{% block headings %}
-<link rel="stylesheet" href="{% static 'app1/blog.css' %}">
+{% extends 'app1/base.html' %} {% load static %}
 
-{% endblock headings %}
-<!-- start here -->
-{% block contents %}
-<div class="centerunlimited">
-    <p id="mydate">
-        {{ product.date }} source :
-        <a href="{{ product.source_link }}"> {{ product.source }}</a>
-    </p>
-    <h3 id="mytitle">{{ product.title }}</h3>
-    <img id="myimg" src="{{ product.img.url }}" alt=""/>
-    <p id="mydes">{{ product.des }}</p>
+<!-- head file  -->
+{% block myhead %} {% endblock myhead %}
 
-    <!-- my blogs extra contents  -->
-    {% for i in extra %}
-    <!-- if condition  -->
-    {% if product.title|slugify == i.blog_number|slugify %}
-    {% if i.img %}
-    <img id="myimg" src="{{ i.img.url }}" alt=""/>
-    {% endif %}
-    {% if i.youtubeLink %}
-    <iframe
-            id="links"
-            class="embed-responsive-item"
-            src="{{ i.youtubeLink }}"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-    ></iframe>
-    {% endif %}
-    <!-- end of if  -->
-    <p id="mydes">{{ i.des }}</p>
-   
+<!-- contents files -->
 
-    {% for con in ListOfContent %}
-    
-    {% if i|slugify == con.blogPostNumber|slugify %}
-     
-    <h1 style=" text-align: center;">{{ con.title  }}</h1>
- 
-     {% endif %}
+{% block content %}
+<div class="container p-8 m-auto bg-[#ffffff83]">
+  <h1 class="text-end">Uploaded : {{ product.date }}</h1>
+  <a class="text-end" href="{{ product.source_link }}">
+    <h1>Source : {{ product.source }}</h1>
+  </a>
 
-    {% endfor %}
-     
-    <ul id="liststyle">
+  <h1 class="text-3xl text-center m-4">{{ product.title }}</h1>
+  <a href="{{ product.img.url }}">
+    <img class="m-auto mb-4" src="{{ product.img.url }}" alt="" />
+  </a>
+  <!-- description  -->
+  {% if product.des %}
+  <h1>{{ product.des }}</h1>
 
-        {% for con in ListOfContent %}
+  {% endif %}
+  <!-- start for loop  -->
+  {% for item in extra %}
 
-        <!--        <h1>list= {{ con.blogPostNumber }} conent= {{ i }}</h1>-->
-        {% if i|slugify == con.blogPostNumber|slugify %}
-        <h4 id="listoftext">
-            <li>{{ con.listText }}</li>
-        </h4>
-        {% endif %}
-        {% endfor %}
-    </ul>
-    {% for imgs in ListOfImages %}
-    {% if i|slugify == imgs.blogPostNumber|slugify %}
-    {% if imgs.ImageSelect %}
+  <h1 class="text-3xl text-center m-4">{{ item.title }}</h1>
+  <!-- start of pre  -->
+  {% if item.code %}
+  <pre
+    class="bg-[#ffffff9b] p-5 rounded-2xl m-5 wrap overflow-x-scroll whitespace-pre-wrap"
+  >
+{{ item.code }}</pre
+  >
 
+  {% endif %}
+  <!-- image s  -->
+  {% if item.img %}
+  <a href="{{ item.img.url }}">
+    <img class="m-auto mb-4" src="{{ item.img.url }}" alt="" />
+  </a>
+  {% endif %}
 
-    <img id="myimg" src="{{ imgs.ImageSelect.url }}" alt=""/>
-    {% endif %}
+  <!-- youtube link  -->
+  {% if item.youtubeLink %}
+  <iframe
+    src="{{ item.youtubeLink }}"
+    class="m-auto mb-2 mt-2 w-96 h-96"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+  ></iframe>
 
+  {% endif %}
+  <!-- description  -->
+  {% if item.des %}
+  <h1 class="whitespace-normal break-words">{{ item.des }}</h1>
+  {% endif %}
 
-    {% if imgs.imageUrl %}
-
-    <img id="myimg" src="{{ imgs.imageUrl }}" alt=""/>
-
-
-    {% endif %}
-    {% endif %}
-
-
-    {% endfor %}
-
-
-    {% endif %}
-
-    <!-- end of another if  -->
-
-    <!-- start of extra list -->
-
-    {% endfor %}
+  <!-- end of for  -->
+  {% endfor %}
 </div>
-{% endblock contents %}
+{% endblock content %}

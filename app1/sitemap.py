@@ -12,7 +12,7 @@ class BlogSitemap(Sitemap):
     priority = 0.9
 
     def items(self):
-        return blog.objects.all()
+        return Blogs.objects.all()
 
     def lastmod(self, obj):
         return obj.date
@@ -23,40 +23,40 @@ class GallerySiteMap(Sitemap):
     priority = 0.9
 
     def items(self):
-        return gallery.objects.all()
+        return Gallery.objects.all()
 
     def lastmod(self, obj):
         return obj.date
 
 
-class HtmlSiteMap(Sitemap):
+class ProjectSitemap(Sitemap):
     changefreq = "never"
     priority = 0.9
 
     def items(self):
-        return HtmlCode.objects.all()
+        return Project.objects.all()
 
     def lastmod(self, obj):
         return obj.date
 
 
-class CssLinkSiteMap(Sitemap):
+class NotesUploadSiteMap(Sitemap):
     changefreq = "never"
     priority = 0.9
 
     def items(self):
-        return CssFiles.objects.all()
+        return NotesUpload.objects.all()
 
     def lastmod(self, obj):
         return obj.date
 
 
-class CreateQuizzz(Sitemap):
+class SocialLinkSiteMap(Sitemap):
     changefreq = "never"
     priority = 0.9
 
     def items(self):
-        return CreateQuiz.objects.all()
+        return SocialLink.objects.all()
 
     def lastmod(self, obj):
-        return obj.id
+        return obj.date

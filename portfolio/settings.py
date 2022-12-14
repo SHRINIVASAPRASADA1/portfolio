@@ -4,7 +4,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-q=ats3@75$2o$!tn#c32+$syg9os#25f^vn2x#_e6n#)8$5i5f'
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -18,7 +18,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.sitemaps',
     'app1',
-    'robots'
+    'robots',
+
 ]
 
 MIDDLEWARE = [
@@ -50,7 +51,8 @@ TEMPLATES = [
     },
 ]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-WSGI_APPLICATION = 'portfolio.wsgi.application'
+# WSGI_APPLICATION = 'portfolio.wsgi.application'
+ASGI_APPLICATION = 'portfolio.asgi.application'
 ROBOTS_USE_SITEMAP = True
 ROBOTS_SITEMAP_VIEW_NAME = 'cached-sitemap'
 

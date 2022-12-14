@@ -1,87 +1,36 @@
-{% extends 'app1/base.html' %}
-<!-- heading start here  -->
-{% block headings %}
-<!-- <script src="https://cdn.tailwindcss.com"></script> -->
+{% extends 'app1/base.html' %} {% load static %}
 
-<style>
-  .category_item {
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-  }
-  .category_item button {
-    /* font-size: 2.1rem; */
-    border: 1px solid white;
-    margin: 0.5rem;
-    border-radius: 0.4rem;
-  }
-  #myimg {
-    object-fit: cover;
-    overflow: hidden;
-    min-width: 15rem;
-    max-width: 15rem;
-    min-height: 12rem;
-    max-height: 12rem;
-  }
-  .mycard {
-    padding: 1rem;
-    min-width: 17rem;
-    max-width: 17rem;
-    min-height: 17rem;
-    max-height: 17rem;
-    overflow: hidden;
-  }
-  #mytxtelip {
-    min-width: 15rem;
-    max-width: 15rem;
-    overflow: hidden;
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    /* color: white; */
-  }
-</style>
-{% endblock headings %}
-<!-- start here -->
-{% block contents %}
-<div class="category_item">
+<!-- head file  -->
+{% block myhead %} {% endblock myhead %}
+
+<!-- contents files -->
+
+{% block content %}
+<div class="container flex flex-wrap justify-evenly m-auto">
   {% for item in category %}
-  <form
-    action="{% url 'blogfilter' catogory=item.blog_catogorys_name %}"
-    method="post"
-  >
+  <form action="{% url 'blogfilter' item.blog_catogorys_name %}" method="post">
     {% csrf_token %}
-    <button
-      value="{{ item.blog_catogorys_name }}"
-      name="selected"
-      type="submit"
-      style="background-color: transparent;font-size: 2.1rem;"
-    >
+    <input type="hidden" name="selected" value="{{ item.blog_catogorys_name }}">
+    <button type="submit" class="bg-[#ffffffa3] p-3 rounded-xl text-center mt-4">
       {{ item.blog_catogorys_name }}
     </button>
   </form>
   {% endfor %}
 </div>
-<div class="category_item">
+
+<div class="container flex flex-wrap justify-evenly m-auto">
   {% for item in blog %}
-  <form action="{% url 'render_blog' name=item.title %}" method="post">
+
+  <form action="{% url 'render_blog' item.id %}" method="post">
     {% csrf_token %}
-    <button
-      name="blognumber"
-      value="{{ item.id }}"
-      style="
-        background-color: rgba(0, 0, 0, 0);
-        border: 1px solid white;
-        margin: 1rem;
-      "
-      class="mycard"
-    >
-      <img id="myimg" src="{{ item.img.url }}" alt="" />
-      <p id="mytxtelip" >
-        {{ item.title }}
-      </p>
-    </button>
+    <button type="submit"
+    class="container bg-[#ffffffa3] w-60 h-72 p-8 mt-3 rounded-lg hover:bg-white overflow-hidden text-ellipsis sm:m-auto sm:mt-4"
+  >
+    <img class="w-52 h-52 object-contain " src="{{ item.img.url }}" alt="" />
+
+    <h1 class="text-3xl text-center overflow-hidden text-ellipsis">{{ item.title }}</h1>
+  </button>
   </form>
   {% endfor %}
 </div>
-{% endblock contents %}
+{% endblock content %}

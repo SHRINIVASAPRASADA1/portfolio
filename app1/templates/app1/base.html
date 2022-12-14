@@ -1,53 +1,106 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="en">
+<html class="dark" lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BitDev</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'app1/style.css' %}" />
-    {% block headings %} {% endblock headings %}
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
+    />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% block myhead %} {% endblock myhead %}
   </head>
-  <body>
-    <div id="nav" class="nav">
-      <button id="close" onclick="show_close()">&#x2715;</button>
-      <button id="bar" onclick="open_nav()" class="ham">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+
+  <!-- rgba(67, 0, 67, 0.613),
+  rgba(0, 0, 92, 0.493) -->
+  <body
+    class="scroll-smooth"
+    style="
+      background: rgb(255, 255, 255);
+      background: rgb(255, 255, 255);
+background: radial-gradient(circle, rgb(250, 243, 246) 0%, rgba(134,189,255,1) 100%); 
+    "
+  >
+    <div
+      class="container m-2 mt-2 p-2 bg-[#ffffffce]  rounded-md  xl:w-auto block md:flex sm:flex lg:flex justify-evenly mx-auto"
+      style="width: 100% "
+    >
+      <button
+        id="ham"
+        onclick="hamburger();"
+        class="container w-14 block sm:hidden"
+      >
+        <div class="container w-13 bg-black h-1 m-1"></div>
+        <div class="container w-13 bg-black h-1 m-1"></div>
+        <div class="container w-13 bg-black h-1 m-1"></div>
+        <div class="container w-13 bg-black h-1 m-1"></div>
+        <div class="container w-13 bg-black h-1 m-1"></div>
       </button>
-      <h1>BitDev</h1>
-      <ul class="lists" id="lists">
-        <li>
-          <a href="{% url 'index' %}"> Home </a>
-        </li>
-        <li>
-          <a href="{% url 'blogs' %}"> Blogs </a>
-        </li>
-
-        <li>
-          <a href="{% url 'code' %}"> Codes </a>
-        </li>
-
-        <li>
-          <a href="{% url 'quiz' %}"> Quiz </a>
-        </li>
-        <!-- <li>
-          <a href="{% url 'css' %}"> CSS </a>
-        </li> -->
-
-        <li>
-          <a href="{% url 'gallery' %}"> Gallery </a>
-        </li>
-        <li>
-          <a href="{% url 'contact' %}"> Contact </a>
-        </li>
-      </ul>
+      <button
+        id="close"
+        type="button"
+        onclick="closebtn();"
+        class="text-6xl container w-14 hidden sm:hidden "
+      >
+        X
+      </button>
+      <h1 id="listen" class="text-4xl text-center hidden sm:block ">
+        Hello
+      </h1>
+      <div class="block md:flex sm:flex lg:flex">
+        <h1
+          id="eles1"
+          class=" bg-blue m-2 text-2xl text-center hidden sm:block hover:text-green-600 hover:cursor-pointer"
+        >
+          <a href="{% url 'index' %}">Home</a>
+        </h1>
+        <h1
+          id="eles2"
+          class=" bg-blue m-2 text-2xl text-center hidden sm:block hover:text-green-600 hover:cursor-pointer"
+        >
+          <a href="{% url 'blogs' %}">Blog</a>
+        </h1>
+        <h1
+          id="eles5"
+          class=" bg-blue m-2 text-2xl text-center hidden sm:block hover:text-green-600 hover:cursor-pointer"
+        >
+          <a href="{% url 'notes' %}">Notes</a>
+        </h1>
+        <h1
+          id="eles3"
+          class=" bg-blue m-2 text-2xl text-center hidden sm:block hover:text-green-600 hover:cursor-pointer"
+        >
+          <a href="{% url 'gallery' %}">Gallery</a>
+        </h1>
+        <h1
+          id="eles4"
+          class=" bg-blue m-2 text-2xl text-center hidden sm:block hover:text-green-600 hover:cursor-pointer"
+        >
+          <a href="{% url 'links' %}">Links</a>
+        </h1>
+      </div>
+      <form action="{% url 'search' %}" method="post" class="flex justify-center">
+        {% csrf_token %}
+        <input
+          id="eles7"
+          type="text"
+          name="myquerry"
+          class="bg-[#fffbfb00] m-1 border-2  text-center outline-none rounded-lg hidden lg:block"
+          placeholder="Search here .. !"
+        />
+        <button
+          id="eles6"
+          class="hidden lg:block hover:bg-green-500 outline-none border-2  rounded-lg m-1 w-auto px-5"
+        >
+          Search
+        </button>
+      </form>
     </div>
 
-    {% block contents %} {% endblock contents %}
+    {% block content %} {% endblock content %}
     <script src="{% static 'app1/script.js' %}"></script>
   </body>
 </html>

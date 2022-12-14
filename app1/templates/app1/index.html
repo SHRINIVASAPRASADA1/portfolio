@@ -1,119 +1,136 @@
-{% extends 'app1/base.html' %} {% block headings %}
+{% extends 'app1/base.html' %} {% load static %}
+
+<!-- head file  -->
+{% block myhead %}
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-{% endblock headings %} {% block contents %}
 
-<h1 id="maintitle">Code studio</h1>
-<h1 id="maintitle">for the Computer world</h1>
-<div class="partition">
-  <div class="part1">
-    <lottie-player
-      id="anime"
-      src="https://assets6.lottiefiles.com/packages/lf20_fifomona.json"
-      background="transparent"
-      speed="1"
-      style="width: 60%"
-      loop
-      autoplay
-    ></lottie-player>
-  </div>
-  <div class="part2">
-    <h1 id="titleabout">About</h1>
-    <h1 id="aboutme">
-      My name is Shrinivasa Prasada, and I have a BCA degree and am currently
-      pursuing an MCA. In my spare time, I develop android and iOS apps as well
-      as web applications. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; I started my
-      coding journey on my 11th standard. Now I am continuing with computer
-      science. In my free time I am learning new technology . And build
-      software's
-    </h1>
-  </div>
-</div>
-<div class="partition">
-  <div class="part1">
-    <h1 id="titleabout">Technical Skills</h1>
-    <h1 id="aboutme">
-      <pre
-        style="
-          white-space: pre-wrap;
-          word-wrap: break-word;
-          font-weight: lighter;
-         
-        "
-      >
-        Language : Python , Javascript , C++ , Dart ,Java ;
-        Framework : Flutter , React.js , Django ,Flask , Next.js ;
-        Operating System : Linux(Ubuntu , Arch , Kali , Fedora ) , Windows ;
-        Librays : Tensorflow , Sklearn , Pandas , Numpy , Keras .. Others ;
-        Database : Mysql , Mongo , PostgreSQL , Firebase ;
-        Others : Html , Css , Jquerry ;
-      </pre>
-    </h1>
-  </div>
-  <div class="part2">
-    <lottie-player
-      id="anime"
-      src="https://assets7.lottiefiles.com/private_files/lf30_VBnEpi.json"
-      background="transparent"
-      speed="1"
-      style="width: 60%"
-      loop
-      autoplay
-    ></lottie-player>
-  </div>
+{% endblock myhead %}
+
+<!-- contents files -->
+
+{% block content %}
+
+<div class="container m-auto">
+  <!-- <img
+    class="m-auto"
+    src="https://selftaught.blog/wp-content/uploads/2020/04/computer-2982270_1920-1568x1018.jpg"
+    alt=""
+  /> -->
+
+  <lottie-player
+    src="https://assets6.lottiefiles.com/packages/lf20_0yfsb3a1.json"
+    background="transparent"
+    speed="1"
+    class="w-1/2 m-auto"
+    loop
+    autoplay
+  ></lottie-player>
 </div>
 
-<!-- hobby  -->
-
-<div class="partition">
-  <div class="part1">
-    <lottie-player
-      id="anime"
-      src="https://assets10.lottiefiles.com/private_files/lf30_tr47e8ve.json"
-      background="transparent"
-      speed="1"
-      style="width: 60%"
-      loop
-      autoplay
-    ></lottie-player>
-  </div>
-  <div class="part2">
-    <h1 id="titleabout">hobby & Social Account</h1>
-    <h1 id="aboutme">
-      <pre
-        style="
-          white-space: pre-wrap;
-          word-wrap: break-word;
-          font-weight: lighter;
-        "
-      >
-        hobby : Laptop, Planting , Swimming , Cooking , Exploring  ;
-        GitHub : <a href="https://github.com/SHRINIVASAPRASADA1">GitHub</a>
-        Instagram : <a href="https://www.instagram.com/shrinivasaprasada/?hl=en">Instagram</a>
-        Twitter : <a href="https://twitter.com/PrasadaShrin">Twitter</a>
-        Linkedin : <a href="https://www.linkedin.com/in/shrinivasa-gowda-8b1477251/">Linkedin</a>
-        Email : <a href="mailto:prasadashrinivasa@gmail.com">Email</a>
-      </pre>
-    </h1>
-  </div>
+<!-- about me  -->
+<div class="container m-auto rounded-md p-5 bg-[#ffffffce]">
+  <h1 class="text-4xl text-start">Who I am :</h1>
 </div>
+<div class="container m-auto rounded-md bg-[#ffffffce]">
+  <h1 class="text-2xl p-5 font-light sm:text-3xl">
+    I am shrinivasaprasada from sagar Karnataka, and I completed my BCA;
+    currently, I am pursuing my <b>MCA</b>. I make websites, <b>Android and iOS</b> apps, and
+    other <b>machine learning</b> projects.
+  </h1>
+</div>
+<!-- skill  -->
 
-<h1 id="titles">Projects Compleated</h1>
-<div class="flexcoxs">
-  {% for item in project %}
-  <form
-    action="{% url 'product_view' name=item.id title=item.title %}"
-    method="post"
-  >
-    {% csrf_token %}
-    <button class="card">
-      <input type="hidden" name="projectid" value="{{ item.id }}" />
-      <img id="logoss" src="{{ item.image.url }}" alt="" />
-      <h2 id="titlehead">{{ item.title }}</h2>
-    </button>
-  </form>
+<div class="container m-auto rounded-md p-5 mt-15 bg-[#ffffffce]">
+  <h1 class="text-4xl text-start">Skills</h1>
+</div>
+<div class="container flex justify-evenly flex-wrap m-auto rounded-md bg-[#ffffffce]">
+  {% for item in skill %}
+
+  <a href="{{ item.link }}" class="container w-64 h-64 m-4" >
+    <img class="w-52 h-52 object-contain" src="{{ item.logo.url }}" alt="">
+    <h1 class="font-bold text-center" >{{ item.title }}</h1>
+  </a>
   {% endfor %}
 </div>
 
-{% endblock contents %}
+<!-- social media  -->
+<div class="container m-auto mt-2 rounded-md bg-[#ffffffce]">
+  <h1 class="text-3xl p-5">Social Media</h1>
+</div>
+
+<div class="container m-auto   rounded-md flex-wrap bg-[#ffffffce] p-4">
+  <div class="flex  justify-between flex-wrap">
+
+    {% for item in social %}
+    
+    <a href="{{ item.link }}" class="container m-4 w-40 h-40">
+      <img
+        class="object-contain m-4  h-40 w-40"
+        src="{{ item.logo.url }}"
+        alt=""
+      />
+    </a>
+
+    {% endfor %}
+
+  </div>
+</div>
+<div class="container p-4 m-auto mt-2 bg-[#ffffffce] rounded-xl">
+  <h1 class="text-3xl text-center m-5">&lt; Contact Me &gt;</h1>
+
+  <form
+    action="{% url 'contact' %}"
+    class="flex flex-col justify-center items-center rounded-md"
+    method="post"
+  >
+    {% csrf_token %}
+    <input
+      placeholder="Enter You Email !"
+      type="email"
+      name="email"
+      required
+      class="m-auto rounded-sm outline-none h-8 mt-2 w-full sm:w-1/2 bg-[#bdbcbc8f]"
+    />
+    <input
+      placeholder="Enter Subject !"
+      type="text"
+      name="subject"
+      class="m-auto h-8 mt-2 rounded-md outline-none w-full sm:w-1/2 bg-[#bdbcbc8f]"
+    />
+    <textarea
+      placeholder="Enter Contents"
+      class="m-auto mt-2 rounded-md outline-none h-16 w-full sm:w-1/2 bg-[#bdbcbc8f]"
+      name="body"
+      id=""
+      cols="30"
+      rows="10"
+    >
+    </textarea>
+    <button
+      class="h-12 border-2 bg-[#ffffffce] rounded-md outline-none p-3 m-auto mt-2 hover:bg-green-700 border-black"
+    >
+      Contanct
+    </button>
+  </form>
+</div>
+<h1 class="container text-3xl mt-5 m-auto text-center">Project Complited :</h1>
+<div class="container flex flex-wrap justify-evenly p-12 m-auto">
+  {% for item in projects %}
+  <form action="{% url 'product_view' name=item.id title=item.title %}" method="post">
+    {% csrf_token %}
+    <button type="submit"
+      class="container rounded-xl hover:bg-[#15de1532] p-4 mt-4 sm:m-auto bg-[#ffffffce] w-60 h-56"
+    >
+      <h1 class="text-center text-2xl m-auto overflow-hidden text-ellipsis">
+         {{ item.title }}
+      </h1>
+      <h1 class="text-center text-xs m-auto overflow-hidden text-ellipsis">
+        Language/Tool : {{ item.lang }}
+      </h1>
+    </button>
+  </form>
+
+  {% endfor %}
+</div>
+
+{% endblock content %}

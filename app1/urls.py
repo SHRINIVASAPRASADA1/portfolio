@@ -8,25 +8,22 @@ from django.contrib.sitemaps.views import sitemap
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('quiz', views.Quiz, name='quiz'),
-    path('createQuiz', views.createQuiz, name='createQuiz'),
-    path('outputs/<email>', views.simple_redirect, name='simple_redirect'),
-    path('ans_report', views.report_answer, name='report'),
-    path('search_report', views.search_report, name='search_report'),
-    path(r'quizz/<cat>/?', views.QUizView, name='myquiz'),
     path('form_handler', views.index, name='form_handler'),
     path('blog', views.blog, name='blogs'),
     path('contact', views.contact, name='contact'),
+    path('happy', views.thank, name='thank'),
+    path('server', views.error404page, name='server'),
+    path('links', views.LinkAdded, name='links'),
+    path('Notes/<notesName>/<id>', views.HandleNotes, name='HandleNotes'),
     path('gallery', views.gallery, name='gallery'),
-    path('csslink', views.csslink, name='css'),
-    path('code', views.display_code_content, name='code'),
-    path('code/?/title=<title>', views.html_render, name='codeblock'),
+    path('notes', views.NotesView, name='notes'),
+    path('search/?/query/>', views.search, name='search'),
     path('render_blog/blog=<name>/?', views.render_blog, name='render_blog'),
     path('catogory_blog/<catogory>/?', views.blogfilter, name='blogfilter'),
     path('product_view/<name>/?/<title>/?', views.product_view, name='product_view'),
     path('sitemap.xml', sitemap, {
-        'sitemaps': {"BlogSitemap": BlogSitemap, "ImageSitemap": GallerySiteMap, "HtmlSiteMap": HtmlSiteMap,
-                     "cssSiteMap": CssLinkSiteMap, "Quizz": CreateQuizzz}},
+        'sitemaps': {"BlogSitemap": BlogSitemap, "ImageSitemap": GallerySiteMap, "notes": NotesUploadSiteMap,
+                     "ProjectSitemap": ProjectSitemap}},
          name='django.contrib.sitemaps.views.sitemap')
 ]
 

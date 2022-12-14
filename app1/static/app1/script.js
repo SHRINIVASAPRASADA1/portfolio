@@ -1,19 +1,24 @@
-var docs = document.getElementById("nav").style;
-var litems = document.getElementById("lists").style;
-var bar = document.getElementById("bar").style;
-var closenav = document.getElementById("close").style;
+function hamburger() {
+  document.getElementById("eles1").style.display = "block";
+  document.getElementById("eles2").style.display = "block";
+  document.getElementById("eles3").style.display = "block";
+  document.getElementById("eles4").style.display = "block";
+  document.getElementById("eles5").style.display = "block";
+  document.getElementById("eles6").style.display = "block";
+  document.getElementById("eles7").style.display = "block";
+  document.getElementById("ham").style.display = "none";
 
-function open_nav() {
-  if ((docs.display = "block")) {
-    // docs.display = "none";
-    litems.display = "block";
-    bar.display = "none";
-    closenav.display = "block";
-  }
+  document.getElementById("close").style.display = "block";
 }
 
-function show_close() {
-  closenav.display = "none";
-  bar.display = "block";
-  litems.display = "none";
+function closebtn() {
+  document.getElementById("eles1").style.display = "none";
+  document.getElementById("eles2").style.display = "none";
+  document.getElementById("eles3").style.display = "none";
+  document.getElementById("eles4").style.display = "none";
+  document.getElementById("eles5").style.display = "none";
+  document.getElementById("eles6").style.display = "none";
+  document.getElementById("eles7").style.display = "none";
+  document.getElementById("ham").style.display = "block";
+  document.getElementById("close").style.display = "none";
 }

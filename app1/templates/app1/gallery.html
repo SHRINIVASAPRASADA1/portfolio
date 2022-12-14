@@ -1,44 +1,22 @@
-{% extends 'app1/base.html' %}
-<!-- heading start here  -->
-{% block headings %}
+{% extends 'app1/base.html' %} {% load static %}
 
-<style>
-  .fb {
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-  }
+<!-- head file  -->
+{% block myhead %} {% endblock myhead %}
 
-  .mycard {
-    width: 14rem;
-    height: 14rem;
-    margin: 1rem;
-  }
+<!-- contents files -->
 
-  .mycard img {
-    object-fit: cover;
-    width: 13rem;
-    height: 13rem;
-  }
-  .mycard p {
-    /* color: white; */
-  }
-</style>
+{% block content %}
 
-{% endblock headings %}
-<!-- start here -->
-{% block contents %}
-
-  <div class="fb">
-    {% for i in images %}
-
-    <button class="mycard">
-      <a href="{{ i.img.url }}">
-        <img src="{{ i.img.url }}" alt="" />
-      <p>{{ i.date }}</p>
-      </a>
-    </button>
-    {% endfor %}
-  </div>
-
-{% endblock contents %}
+<div class="container m-auto flex justify-evenly flex-wrap">
+  {% for item in images %}
+  <a href="{{ item.img.url }}">
+    <div class="container h-60 w-60 mt-3 bg-[#ffffff91] p-4">
+      <img
+        class="object-contain h-52 w-56"
+        src="{{ item.img.url }}"
+        alt=""
+      /></div
+  ></a>
+  {% endfor %}
+</div>
+{% endblock content %}

@@ -1,33 +1,35 @@
-{% extends 'app1/base.html' %}
-<!-- heading start here  -->
-{% block headings %}
+{% extends 'app1/base.html' %} {% load static %}
 
-<style>
-    img{
-        width: 60%;
-        height: 70vh;
-        margin: 1rem 20%;
-        object-fit: contain;
-    }
-    h2{
-        text-align: center;
-        /* color: white; */
-    }
-    p{
-        /* color: white; */
-        padding: 1rem;
-        overflow: -moz-hidden-unscrollable;
-    }
-</style>
-{% endblock headings %}
-<!-- start here -->
-{% block contents %}
-<img src="{{ project.image.url }}" alt="">
-<h2>{{ project.title }}</h2>
-<h2>{{ project.date }}</h2>
-<h2>{{ project.start }}</h2>
-<h2>{{ project.end }}</h2>
-<h2>{{ project.lang }}</h2>
-<h2>{{ project.Platform }}</h2>
-<p>{{ project.des }}</p>
-{% endblock contents %}
+<!-- head file  -->
+{% block myhead %}
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+{% endblock myhead %}
+
+<!-- contents files -->
+
+{% block content %}
+
+<div class="container p-6 bg-[#ffffff8c] m-auto ">
+    
+    <h1 class="text-3xl mb-4  overflow-hidden break-words text-ellipsis text-center">{{ project.title  }}</h1>
+
+    <img class="m-auto" src="{{ project.image.url }}" alt="">
+    <h1 class="text-2xl p-4 text-center"> Language Used : {{ project.lang  }}</h1>
+    <h1 class="text-2xl text-center"> Project Started : {{ project.start  }}</h1>
+    <h1 class="text-2xl text-center">Project Ended : {{ project.end  }}</h1>
+    <h1 class="text-2xl p-4 text-center"> Supported Platform : {{ project.Platform  }}</h1>
+
+
+    <h1 class="p-4" >description : {{ project.des }}</h1>
+    <a href="{{ project.link }}">
+
+
+    <h1 class="p-4 text-3xl text-center hover:bg-green-600" >Know More</h1>
+
+    </a>
+    
+    
+   </div>
+
+{% endblock content %}
